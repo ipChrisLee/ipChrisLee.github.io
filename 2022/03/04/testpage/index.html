@@ -40,12 +40,28 @@
   
 
   
-    
- 	  <script src="/lib/clickLove.js"></script>
-  
   
 
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
 
+</script>
+
+
+
+  
+    <script src="/lib/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
   
 
 </head>
@@ -82,15 +98,15 @@
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">Aritcles</a>
 				
 			
 				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">Links</a>
 				
 			
 				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">About Me</a>
 				
 			
 		</nav>
@@ -128,7 +144,7 @@
       
       
       <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
+        href="https://github.com/ipChrisLee" target="_blank">
         <img src="/img/forkme.png"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
@@ -223,11 +239,6 @@
 
   
   
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
 <a href="/2022/03/04/testpage/" class="archive-article-date">
         <time datetime="2022-03-04T04:51:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
 </a>
@@ -268,26 +279,6 @@
 
     
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          John Doe
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://example.com/2022/03/04/testpage/" title="testpage" target="_blank">http://example.com/2022/03/04/testpage/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -407,6 +398,29 @@
 
 
 
+  
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
+  
+  <script>
+    <!-- id: "testpage" -->
+    var gitment = new Gitment({
+      id: "20220304125113",
+      owner: 'ipChrisLee',
+      repo: 'blog-comment-repo',
+      oauth: {
+        client_id: '09f857e76b34541108fe',
+        client_secret: '86d221986425fc0fcb1bd81ca0aa1cd7b9e41192',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
 
@@ -417,7 +431,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2022 <a href="http://example.com/" target="_blank">John Doe</a>
+    		&copy; 2022 <a href="http://example.com/" target="_blank">John Doe</a>
     	</div>
       	<div class="footer-right">
 			
@@ -428,18 +442,6 @@
   </div>
   
   
-	<script src="/lib/busuanzi.pure.js"></script>
-	
-  
-  
-	
-	<span id="busuanzi_container_site_pv" style="display:none">
-		本站总访问量<span id="busuanzi_value_site_pv"></span>次	
-	        <span class="post-meta-divider" >|</span>
-	</span>
-  	<span id="busuanzi_container_site_uv" style='display:none'>
-  		本站访客数<span id="busuanzi_value_site_uv"></span>人
-  	</span>
   
 </footer>
 
@@ -487,23 +489,6 @@
 
 <!--  -->
 
-<script>
-  /* 标签页标题切换 */
-  var originTitle = document.title;
-  var titleTime;
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
-      clearTimeout(titleTime);
-    } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
-      titleTime = setTimeout(function () {
-        document.title = originTitle;
-      }, 2000);
-    }
-  });
-</script>
-
 
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
@@ -528,15 +513,15 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">Aritcles</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">Links</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">About Me</a></li>
       
         
     </ul>
@@ -605,12 +590,32 @@
         <ul class="search-ul">
           
             <li class="search-li">
+              <a href="http://www.catb.org/~esr/faqs/smart-questions.html" target="_blank" 
+                class="search-title" >
+                
+                  <i class="icon-link icon"></i>
+                
+                &lt;Article&gt; How To Ask Questions The Smart Way
+              </a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways" target="_blank" 
+                class="search-title" >
+                
+                  <i class="icon-link icon"></i>
+                
+                &lt;Article in ch&gt; 别像弱智一样提问
+              </a>
+            </li>
+          
+            <li class="search-li">
               <a href="https://hacbox.me" target="_blank" 
                 class="search-title" >
                 
                   <img src="https://hacbox.me/img/favicon.png">
                 
-                灰域行者的罐头盒子
+                &lt;Schoolmate&gt; 灰域行者的罐头盒子
               </a>
             </li>
           
@@ -620,7 +625,7 @@
                 
                   <img src="https://sayaka-4987.github.io/img/favicon.ico">
                 
-                Schnap5idee
+                &lt;Schoolmate&gt; Schnap5idee
               </a>
             </li>
           
@@ -630,7 +635,7 @@
                 
                   <i class="icon-link icon"></i>
                 
-                ZX的花哨小玩意儿
+                &lt;Schoolmate&gt; ZX的花哨小玩意儿
               </a>
             </li>
           
@@ -643,7 +648,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme"><br>An undergraduate student <br>in Beijing Jiaotong University. <br><br>I have an interest in academics of <br> computer architecture (maybe).</div>
+  	  		<div class="aboutme-wrap" id="aboutme"><br>An undergraduate student <br>in Beijing Jiaotong University. <br><br>I have an interest in academics of <br> computer architecture (maybe). <br><br>Contact with me with <br>chrisleecn@outlook.com <br><br>Schoolmates can concat me <br>with my school email too.</div>
   	  	
     	</section>
     
@@ -720,13 +725,6 @@
 
   
   
-<script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
-<script>
-  POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
-  document.body.addEventListener('input', POWERMODE);
-</script>
-
   
   <!-- <script async type="text/javascript" size="90" alpha="0.2" zIndex="0" src="/plugins/ribbon.js/ribbon.min.js"></script> -->
   
