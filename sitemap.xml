@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/</loc>
+    
+    <lastmod>2022-03-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ipchrislee.github.io/2022/03/04/About/</loc>
     
     <lastmod>2022-03-04</lastmod>
@@ -60,6 +69,13 @@
   
   <url>
     <loc>https://ipchrislee.github.io/tags/%E9%9A%8F%E6%83%B3/</loc>
+    <lastmod>2022-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ipchrislee.github.io/tags/C-plus-plus/</loc>
     <lastmod>2022-03-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
