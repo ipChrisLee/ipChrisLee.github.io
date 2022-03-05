@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ipchrislee.github.io">
-  <title>What happened when converting bool value to unsigned long type | ChrisLee&#39;s Blog</title>
+  <title>What happened when casting bool value to unsigned long type | ChrisLee&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first converts bool to unsigned long, and">
+  <meta name="description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first casts bool to unsigned long, and the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="What happened when converting bool value to unsigned long type">
+<meta property="og:title" content="What happened when casting bool value to unsigned long type">
 <meta property="og:url" content="https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
-<meta property="og:description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first converts bool to unsigned long, and">
+<meta property="og:description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first casts bool to unsigned long, and the">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-04T12:50:32.000Z">
-<meta property="article:modified_time" content="2022-03-04T13:27:34.015Z">
+<meta property="article:modified_time" content="2022-03-05T04:39:39.828Z">
 <meta property="article:author" content="ChrisLee">
 <meta property="article:tag" content="in English">
 <meta property="article:tag" content="C plus plus">
@@ -232,7 +232,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      What happened when converting bool value to unsigned long type
+      What happened when casting bool value to unsigned long type
     </h1>
   
 
@@ -273,10 +273,10 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first converts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
+    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first casts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
 <span id="more"></span>
 
-<p>The conclusion is: <code>bool</code> will be treated as <code>unsigned</code> value, be zero-extended to <code>unsigned long</code>, and then be output.</p>
+<p>The amswer is: <code>bool</code> will be treated as <code>unsigned</code> value, be zero-extended to <code>unsigned long</code>, and then be output.</p>
 <p>It spends me a lot of time thinking of why, but finally I find this is very obvious…</p>
 <p>First, let’s figure out that: is <code>bool</code> an unsigned value? The answer is: Yes. <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34612344/is-stdis-unsignedboolvalue-well-defined">The discussion in stackoverflow</a> said this. And the discussion also claims that <code>bool</code> is integral type too.</p>
 <p>Second, how program casts the narrower integral type data to wider integral type? The program will change the size of data first, and change the signedness. So, signed value is casted like being signed-extended, and unsigned value is casted like being zero-extended.</p>
@@ -300,7 +300,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" title="What happened when converting bool value to unsigned long type" target="_blank">https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/</a>
+          <a href="https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" title="What happened when casting bool value to unsigned long type" target="_blank">https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/</a>
         </li>
         
         <li>

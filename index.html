@@ -235,7 +235,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" target="_blank">What happened when converting bool value to unsigned long type</a>
+	  <a class="article-title" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" target="_blank">What happened when casting bool value to unsigned long type</a>
   
     </h1>
   
@@ -256,7 +256,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first converts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
+    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first casts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
     
     <a class="article-more-a" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/#more">more >></a>
     
