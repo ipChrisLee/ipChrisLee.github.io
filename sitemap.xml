@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ipchrislee.github.io/2022/03/13/imgTest/</loc>
+    
+    <lastmod>2022-03-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ipchrislee.github.io/2022/03/04/About/</loc>
     
     <lastmod>2022-03-05</lastmod>
@@ -82,5 +91,12 @@
   </url>
   
 
+  
+  <url>
+    <loc>https://ipchrislee.github.io/categories/test/</loc>
+    <lastmod>2022-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
