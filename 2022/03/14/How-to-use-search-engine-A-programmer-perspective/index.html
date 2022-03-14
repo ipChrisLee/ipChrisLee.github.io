@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ipchrislee.github.io">
-  <title>Archives | ChrisLee&#39;s Blog</title>
+  <title>How to use search engine, a programmer perspective | ChrisLee&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ChrisLee&#39;s Blog">
-<meta property="og:url" content="https://ipchrislee.github.io/archives/index.html">
+  <meta name="description" content="本文正在更新中，回复时请确认是否基于本文最新内容。 本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。  标题致敬CSAPP（ 写本文的时候我突然发现我好像已经不能进行 大段 非技术类 内容输出了。。。语文全还给老师了属于是。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to use search engine, a programmer perspective">
+<meta property="og:url" content="https://ipchrislee.github.io/2022/03/14/How-to-use-search-engine-A-programmer-perspective/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
+<meta property="og:description" content="本文正在更新中，回复时请确认是否基于本文最新内容。 本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。  标题致敬CSAPP（ 写本文的时候我突然发现我好像已经不能进行 大段 非技术类 内容输出了。。。语文全还给老师了属于是。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-14T12:56:38.000Z">
+<meta property="article:modified_time" content="2022-03-14T14:34:50.982Z">
 <meta property="article:author" content="ChrisLee">
-<meta property="article:tag" content="blog, computer architecture">
+<meta property="article:tag" content="in Chinese">
+<meta property="article:tag" content="Study Skill">
 <meta name="twitter:card" content="summary">
   
   
@@ -220,41 +225,100 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="true-How-to-use-search-engine-A-programmer-perspective" class="article article-type-true " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-true">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" class="archive-article-date">
-        <time datetime="2022-03-14T12:56:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" target="_blank">How to use search engine, a programmer perspective</a>
   
+    <h1 class="article-title" itemprop="name">
+      How to use search engine, a programmer perspective
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+<a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" class="archive-article-date">
+        <time datetime="2022-03-14T12:56:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">595字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>本文正在更新中，回复时请确认是否基于本文最新内容。</p>
+<p>本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。</p>
+<blockquote>
+<p>标题致敬CSAPP（</p>
+<p>写本文的时候我突然发现我好像已经不能进行 大段 非技术类 内容输出了。。。语文全还给老师了属于是。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="当我们在搜索时，我们在做什么？"><a href="#当我们在搜索时，我们在做什么？" class="headerlink" title="当我们在搜索时，我们在做什么？"></a>当我们在搜索时，我们在做什么？</h1><p>这个小标题看起来是在搞笑，毕竟我们在搜索的时候显然正在搜索。但是搜索这个词其实过于宽泛了，我想用一个更严谨的说法。比如，我们想要写一个shell脚本，其中涉及到“怎么读取一系列命令行参数和变量”（比如<code>gcc</code>编译命令<code>gcc -Wall -Werror -c test.c -o test.o</code>里面的<code>-Wall</code>、<code>-Werror</code>、<code>-c</code>就是命令行参数，<code>-o</code>之后的<code>test.o</code>就是命令行参数带的变量），我们的搜索过程是：</p>
+<ol start="0">
+<li><p>明确我们的搜索目标<code>t</code>。</p>
+<p>在本例中，<code>t</code>就是“怎么读取一系列命令行参数和变量”</p>
+</li>
+<li><p>写一系列字符串输入<code>X</code>。</p>
+<p>在本例中，<code>X</code>的中文版可能就是<code>shell输出参数</code>，英文版可能就是<code>shell input argument</code>。</p>
+</li>
+<li><p>选择一个搜索引擎<code>F</code>。</p>
+<p>这里用百度和Google（不屏蔽英文结果）做对比。</p>
+</li>
+<li><p>得到结果<code>Y=F(X)</code>，然后从<code>Y</code>中选择一个我们需要的结果<code>y</code>，使之和我们一开始的目标<code>t</code>最符合。</p>
+<p>这就是我们在网页按“搜索”之后，针对显示出来的结果进行筛选的过程。</p>
+</li>
+<li><p><del>用<code>y</code>反向训练<code>F</code>。</del></p>
+</li>
+</ol>
+<p>所以这里有这么一些问题需要我们研究：</p>
+<ol start="0">
+<li>我们应该怎么明确我们的搜索目标<code>t</code>。</li>
+<li>对于我们的搜索目标，我们应该输入什么样的<code>X</code>。</li>
+<li>我们应该使用什么样的搜索引擎<code>F</code>。</li>
+<li>什么样的结果<code>Y</code>是好的，是我们可以点进去参阅的。</li>
+</ol>
+<p>实际上，后三个问题是环环相扣的：判断“好的”搜索引擎<code>F</code>需要我们先定义什么样的搜索结果是好的；确定搜索引擎后我们才能根据搜索引擎的特点决定输入<code>X</code>的风格。</p>
+<p>下面先说说我们<strong>需要</strong>什么样的搜索结果。</p>
+<p><em>未完待续</em></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -270,215 +334,141 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" class="archive-article-date">
-        <time datetime="2022-03-04T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">What happened when casting bool value to unsigned long type</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" target="_blank">What happened when casting bool value to unsigned long type</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C plus plus</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">当我们在搜索时，我们在做什么？</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" class="archive-article-date">
-        <time datetime="2022-03-04T11:31:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" target="_blank">一场旧梦</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/If-you-want-to-ask-me-questions/" class="archive-article-date">
-        <time datetime="2022-03-04T10:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/If-you-want-to-ask-me-questions/" target="_blank">If you want to ask me questions...</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/About/" class="archive-article-date">
-        <time datetime="2022-03-04T10:18:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/About/" target="_blank">About</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 
-    
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
 
 
           </div>
@@ -507,8 +497,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
