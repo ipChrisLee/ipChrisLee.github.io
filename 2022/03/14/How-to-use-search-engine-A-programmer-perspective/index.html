@@ -10,19 +10,21 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="本文正在更新中，回复时请确认是否基于本文最新内容。 本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。">
+  <meta name="description" content="本文主要讨论一些程序员使用搜索引擎时的一些使用技巧，及关于搜索引擎的一些讨论。 注意，本文的搜索基本上都是关于技术层面问题与知识（特别是计算机方向的问题与知识）的搜索，这里不讨论一些人文、社会、历史之类学科的搜索。 本文不考虑“有的网站需要通过特殊方式上”、“有的内容需要一定英语能力”之类的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to use search engine, a programmer perspective">
 <meta property="og:url" content="https://ipchrislee.github.io/2022/03/14/How-to-use-search-engine-A-programmer-perspective/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
-<meta property="og:description" content="本文正在更新中，回复时请确认是否基于本文最新内容。 本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。">
+<meta property="og:description" content="本文主要讨论一些程序员使用搜索引擎时的一些使用技巧，及关于搜索引擎的一些讨论。 注意，本文的搜索基本上都是关于技术层面问题与知识（特别是计算机方向的问题与知识）的搜索，这里不讨论一些人文、社会、历史之类学科的搜索。 本文不考虑“有的网站需要通过特殊方式上”、“有的内容需要一定英语能力”之类的问题。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-691e76e69b27fd3a24a12b45eccbce8b_1440w.jpg">
 <meta property="article:published_time" content="2022-03-14T12:56:38.000Z">
-<meta property="article:modified_time" content="2022-03-14T14:39:07.435Z">
+<meta property="article:modified_time" content="2022-04-09T16:36:24.111Z">
 <meta property="article:author" content="ChrisLee">
 <meta property="article:tag" content="in Chinese">
 <meta property="article:tag" content="Study Skill">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-691e76e69b27fd3a24a12b45eccbce8b_1440w.jpg">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -253,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">596字</span>
+      <span class="post-count">4.5k字</span>
     </span>
   </span>
 
@@ -262,7 +264,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">16分</span>
     </span>
   </span>
 </div>
@@ -273,29 +275,30 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>本文正在更新中，回复时请确认是否基于本文最新内容。</p>
-<p>本文主要讨论一些搜索引擎使用技巧，及关于搜索引擎的一些讨论。</p>
+    <p>本文主要讨论一些程序员使用搜索引擎时的一些使用技巧，及关于搜索引擎的一些讨论。</p>
+<p>注意，本文的搜索基本上都是关于技术层面问题与知识（特别是计算机方向的问题与知识）的搜索，这里不讨论一些人文、社会、历史之类学科的搜索。</p>
+<p>本文不考虑“有的网站需要通过特殊方式上”、“有的内容需要一定英语能力”之类的问题。</p>
 <span id="more"></span>
 
 <blockquote>
 <p>标题致敬CSAPP（</p>
 <p>写本文的时候我突然发现我好像已经不能进行 大段 非技术类 内容输出了。。。语文全还给老师了属于是。</p>
 </blockquote>
-<h1 id="当我们在搜索时，我们在做什么？"><a href="#当我们在搜索时，我们在做什么？" class="headerlink" title="当我们在搜索时，我们在做什么？"></a>当我们在搜索时，我们在做什么？</h1><p>这个小标题看起来是在搞笑，毕竟我们在搜索的时候显然正在搜索。但是搜索这个词其实过于宽泛了，我想用一个更严谨的说法。比如，我们想要写一个shell脚本，其中涉及到“怎么读取一系列命令行参数和变量”（比如<code>gcc</code>编译命令<code>gcc -Wall -Werror -c test.c -o test.o</code>里面的<code>-Wall</code>、<code>-Werror</code>、<code>-c</code>就是命令行参数，<code>-o</code>之后的<code>test.o</code>就是命令行参数带的变量），我们的搜索过程是：</p>
+<h1 id="当我们在搜索时，我们在做什么？"><a href="#当我们在搜索时，我们在做什么？" class="headerlink" title="当我们在搜索时，我们在做什么？"></a>当我们在搜索时，我们在做什么？</h1><p>这个小标题看起来是在搞笑，毕竟我们在搜索的时候显然正在搜索。但是搜索这个词其实过于宽泛了，我想用一个更严谨的说法。比如，我们想要写一个shell脚本，其中涉及到“怎么读取一系列命令行参数和变量”（比如<code>gcc</code>编译命令<code>gcc -Wall -Werror -c test.c -o test.o</code>里面的<code>-Wall</code>、<code>-Werror</code>、<code>-c</code>就是命令行参数，<code>-o</code>之后的<code>test.o</code>就是命令行参数带的变量，假设我们现在要实现自己的<code>gcc</code>命令，所以想知道怎么读取这些变量），我们的搜索过程是：</p>
 <ol start="0">
 <li><p>明确我们的搜索目标<code>t</code>。</p>
 <p>在本例中，<code>t</code>就是“怎么读取一系列命令行参数和变量”</p>
 </li>
-<li><p>写一系列字符串输入<code>X</code>。</p>
+<li><p>将目标转化成字符串<code>X</code>。</p>
 <p>在本例中，<code>X</code>的中文版可能就是“shell输入参数”，英文版可能就是“shell input argument”。</p>
 </li>
 <li><p>选择一个搜索引擎<code>F</code>。</p>
-<p>这里用百度和Google（不屏蔽英文结果）做对比。</p>
+<p>后文中我们会把百度和Google（不屏蔽英文结果）做对比。</p>
 </li>
-<li><p>得到结果<code>Y=F(X)</code>，然后从<code>Y</code>中选择一个我们需要的结果<code>y</code>，使之和我们一开始的目标<code>t</code>最符合。</p>
+<li><p>得到一系列结果<code>Y=F(X)</code>，然后从<code>Y</code>中选择一个我们需要的结果<code>y</code>，使之和我们一开始的目标<code>t</code>最符合。</p>
 <p>这就是我们在网页按“搜索”之后，针对显示出来的结果进行筛选的过程。</p>
 </li>
-<li><p><del>用<code>y</code>反向训练<code>F</code>。</del></p>
+<li><p><del>用<code>Y</code>反向训练<code>F</code>。</del></p>
 </li>
 </ol>
 <p>所以这里有这么一些问题需要我们研究：</p>
@@ -305,14 +308,138 @@
 <li>我们应该使用什么样的搜索引擎<code>F</code>。</li>
 <li>什么样的结果<code>Y</code>是好的，是我们可以点进去参阅的。</li>
 </ol>
-<p>实际上，后三个问题是环环相扣的：判断“好的”搜索引擎<code>F</code>需要我们先定义什么样的搜索结果是好的；确定搜索引擎后我们才能根据搜索引擎的特点决定输入<code>X</code>的风格。</p>
+<p>实际上，后三个问题是环环相扣的：判断“好的”搜索引擎<code>F</code>需要我们先定义什么样的搜索结果是好的；确定搜索引擎后我们才能根据搜索引擎的特点决定输入<code>X</code>的风格。而第一个问题虽然很重要（甚至我觉得比后三个还要重要），但是是另一个层面的东西，这篇文章不会做讨论。</p>
 <p>下面先说说我们<strong>需要</strong>什么样的搜索结果。</p>
-<p><em>未完待续</em></p>
+<h1 id="我们到底要什么样的结果？"><a href="#我们到底要什么样的结果？" class="headerlink" title="我们到底要什么样的结果？"></a>我们到底要什么样的结果？</h1><h2 id="我们想要“相关”的内容。"><a href="#我们想要“相关”的内容。" class="headerlink" title="我们想要“相关”的内容。"></a>我们想要“相关”的内容。</h2><p>废话，但是百度的研发人员可能不太懂这句话。</p>
+<h2 id="我们想要“简短且正确的答案”。"><a href="#我们想要“简短且正确的答案”。" class="headerlink" title="我们想要“简短且正确的答案”。"></a>我们想要“简短且正确的答案”。</h2><p>如果你想在C++中实现单例，但是不知道怎么实现，于是你选择使用搜索引擎，你搜索到了三个结果：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/650426dabf7f?ivk_sa=1024320u">简书文章</a>（百度搜索“C++实现单例”的第一条结果）</li>
+<li><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/20d86c2401020740be1e650e52ea551811a6c94e.html">百度文库文章</a>（百度搜索“C++实现单例”的第二条结果）</li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1008019/c-singleton-design-pattern">stack overflow question</a>（Google搜索”singleton c++ example”的第二条结果）</li>
+</ol>
+<p>你可以自行点开看看，你觉得这三个中哪个最好？我觉得是第三个，因为它“针对你的问题”，给出了“最简短，并且能保证正确”的答案，其他两篇文章都花了太长篇幅介绍一些不那么正确的方式。</p>
+<p>这里有一个问题：复杂且正确的解决方案（比如上述的第二个来自百度文库的结果）是不是更好呢？我认为不是。我们在搜索的时候，应该把精力放在目标上。如果你的目的是解决问题Q，那么你需要找的就是问题Q的答案S，至于“关于答案S为什么是对的的解析”或者“Q有没有多种多样的答案”之类的事不应该是你现在需要考虑的。如果你真的好奇，那应该把这些事记下来，之后再以“深入解析S为什么是对的”或“Q的多种解法”为关键词搜索。之所以要这样，有以下几点原因：</p>
+<ol>
+<li><p>这种搜索方式可以保证你的注意力不被分散。</p>
+<p>如果你的每个问题Q的答案S里都包含了“深入解析S为什么是对的”或者“Q的多种解法”之类的东西，那么你的搜索时间中的大半都会消耗在这些与当前问题Q无关的东西上，这些东西会拖慢你解决Q的速度，进而拖慢你完成工作的速度。</p>
+</li>
+<li><p>在搜索Q的答案时得到的“深入解析S为什么是对的”与“Q的多种解法”这类内容，质量上一定不如你直接搜索得到的内容高。</p>
+</li>
+</ol>
+<h2 id="我们想要“正确且易于理解的知识介绍”。"><a href="#我们想要“正确且易于理解的知识介绍”。" class="headerlink" title="我们想要“正确且易于理解的知识介绍”。"></a>我们想要“正确且易于理解的知识介绍”。</h2><p>有时候我们想要学一些知识，此时我们希望我们参考的知识介绍易于理解（至少不像某些中文教科书那样不说人话）。举个例子，如果你在学习编译优化的时候看到了“向量化并行”这个名词，想要了解什么是编译优化中的“向量化并行”。</p>
+<ol>
+<li><p>如果你非常幸运地搜索到了<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/1422181/17924585">answer from stack overflow</a>，那你可以秒懂了，因为这个回答的作者提供了两段代码，完美地解释了“向量化并行”：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//	Add two array</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">16</span>; ++i)</span><br><span class="line">    C[i] = A[i] + B[i];</span><br><span class="line"><span class="comment">//	Vectorizing it produces something like this:</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">16</span>; i+=<span class="number">4</span>)</span><br><span class="line">    addFourThingsAtOnceAndStoreResult(&amp;C[i], &amp;A[i], &amp;B[i]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当然，如果你搜索到<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/337756824">这篇知乎文章</a>，那你也是很幸运的，因为这个文章的作者提供了一张图，也完美解释了“向量化并行”（左为原代码，右为向量化并行之后的）：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-691e76e69b27fd3a24a12b45eccbce8b_1440w.jpg"></p>
+</li>
+<li><p>当然，如果你不幸只找到了<a target="_blank" rel="noopener" href="https://blog.csdn.net/betterlord/article/details/53844645">这篇CSDN文章</a>，那么你可能就没法搞懂“向量化并行”是什么了。</p>
+</li>
+</ol>
+<p>这就是“易于理解”的威力，前两个文章可以让你看一眼就懂，第三个文章只会让你摸不着头脑。</p>
+<h2 id="我们想要“官方的解决方案”。"><a href="#我们想要“官方的解决方案”。" class="headerlink" title="我们想要“官方的解决方案”。"></a>我们想要“官方的解决方案”。</h2><h3 id="“官方的解决方案”的官方来自哪里？"><a href="#“官方的解决方案”的官方来自哪里？" class="headerlink" title="“官方的解决方案”的官方来自哪里？"></a>“官方的解决方案”的官方来自哪里？</h3><p>有时候我们需要找到一些软件的安装方法和使用介绍。举几个例子：</p>
+<ol>
+<li>我最近正在学习MIT 6.828课程，课程中需要安装riscv64-unknown-linux-gnu-gdb，但是我的Linux中本来并没有这个东西，我需要找到“下载安装的方法”。</li>
+<li>我想试试QEMU软件，但是我不知道该怎么下载安装它。</li>
+</ol>
+<p>对于这类问题，其实都有且大多数时候只有唯一的去处：官网，比如对于“怎么下载安装QEMU”就可以直接从<a target="_blank" rel="noopener" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiH_bfc8ob3AhVB63MBHQRHDqoQFnoECAsQAQ&url=https://www.qemu.org/download&usg=AOvVaw10WwETOdhOHaY0EreFNM3l">QEMU官网</a>找到答案。</p>
+<p>当然，对于一个programmer来说，有时也需要从最大的<del>同性交友平台</del>代码托管平台GitHub下载，比如第一个例子，我们实际上需要下载的是riscv-gnu-toolchain，它的代码托管在<a target="_blank" rel="noopener" href="https://github.com/riscv-collab/riscv-gnu-toolchain">GitHub</a>，并且在链接的GitHub页面里就说了如何安装。</p>
+<p>以上两种本质都是一样的，都是“官方的解决方案”，它都是由软件&#x2F;代码发布者发布的。</p>
+<h3 id="二手的信息源，垃圾！"><a href="#二手的信息源，垃圾！" class="headerlink" title="二手的信息源，垃圾！"></a>二手的信息源，垃圾！</h3><p>那非官方的解决方案值得看吗？比如你百度“ubuntu 安装riscv gdb”的话，可以看到<a target="_blank" rel="noopener" href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=84053098_3_dg&wd=ubuntu%20%E5%AE%89%E8%A3%85riscv%20gdb&oq=ubuntu%25E5%25AE%2589%25E8%25A3%2585riscv%2520gdb&rsv_pq=ac12c2c90005d9d2&rsv_t=bf66gKmUCFx7V0Pk9V+78lZrb534HI8BeKgUkBdEdywuqAGw89IG792HYkmAL58NeEnqlA&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_btype=t&inputT=489&rsv_sug3=20&rsv_sug1=9&rsv_sug7=100&rsv_sug2=0&rsv_sug4=891">第一页的结果</a>的全部选项会指向“CSDN”、“知乎”之类的网站分享安装方法。<br>我的回答是：绝大多数情况下，<strong>对于“怎么下载安装”这种问题，二手的信息就是垃圾</strong>。我之前安装过很多东西，没有一次是“官方信息不如二手信息有用”的。软件安装官方不仅会发布下载安装方式，还会收集用户在安装过程中遇到的问题；并且在官网提供解决方案和一些严谨的提示，这些信息远比博客之类的二手信息源来得准确和全面；并且官方信息是实时更新的，二手信息则很难做到实时更新。以“ubuntu 安装riscv gdb”在百度的搜索结果为例：</p>
+<ul>
+<li><p>搜索排名第一的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42929607/article/details/122716783">CSDN上的文章</a>，他并没有介绍怎么安装，他介绍的是因为网速的原因安装失败怎么办，且不管这个搜索结果内容如何，百度把这种非我们想要的内容放在第一个就很恶心，因为它在浪费我们的耐心。</p>
+</li>
+<li><p>搜索排名第二的是<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41976613/article/details/89629372">CSDN上的文章</a>，他的安装中有这么一句：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/riscv/riscv-gnu-toolchain</span><br><span class="line"><span class="built_in">cd</span> riscv-gnu-toolchain</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<p>但是实际上按照GitHub上官方的提示”This repository uses submodules, but submodules will fetch automatically on demand, so <code>--recursive</code> or <code>git submodule update --init --recursive</code> is not needed.”，这一步是不需要的。</p>
+<p>此外，他的安装过程中增加了非常多的环境变量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">./configure --prefix=/opt/riscv</span><br><span class="line">make</span><br><span class="line"><span class="built_in">export</span> PATH=/opt/riscv/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">export</span> RISCV=/path/to/install/riscv/toolchain</span><br><span class="line">./build.sh</span><br><span class="line"><span class="built_in">export</span> PATH=/path/to/install/riscv/toolchain/bin:<span class="variable">$PATH</span> </span><br></pre></td></tr></table></figure>
+
+<p>但是按照GitHub上官方的提示”To build the Linux cross-compiler, pick an install path. If you choose, say, <code>/opt/riscv</code>, then add <code>/opt/riscv/bin</code> to your <code>PATH</code> now. Then, simply run the following command:”，只需要增加一个环境变量（并且官方也说明了为什么需要这个环境变量）。</p>
+</li>
+<li><p>之后的文章的安装方法和官方的安装方法比都或多或少有些出入，这里就不再赘述了。</p>
+</li>
+</ul>
+<p>实际上，<strong>除了安装方法之外，其他很多方面也往往是官方的更全面、细致、完善</strong>。比如，如果你想要Matlab中一个函数的使用方法，最好直接看Matlab官方文档，而不是看博客。你可以感受一下<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/plot.html?searchHighlight=plot&s_tid=srchtitle_plot_1">Matlab文档里对<code>plot</code>的介绍</a>和<a target="_blank" rel="noopener" href="https://blog.csdn.net/xuxinrk/article/details/80051238">百度搜索结果第二的介绍</a>（第一更烂）。</p>
+<h1 id="什么样的搜索引擎是好的？"><a href="#什么样的搜索引擎是好的？" class="headerlink" title="什么样的搜索引擎是好的？"></a>什么样的搜索引擎是好的？</h1><p>在定义了我们想要的结果后，我们就需要讨论用什么搜索引擎了。</p>
+<p>我直接给出我的判断：英文搜索Google &gt;&gt; 中文搜索百度。实际上，在我写前面内容时，就在有意识地对比两个搜索方式的结果，最后的评价就是：英文搜索Google的结果绝大多数时候比中文搜索百度的结果好，剩下少数时候则是两者相当。我没有什么大样本测试，不过，给出我自己的判断应该不需要这种东西。具体来说：</p>
+<ul>
+<li><p>不知道为什么，百度的搜索结果似乎并不会将英文内容放在前面（即使你用英文搜索。相关知乎讨论：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20631126">知乎</a>），也因此你很难通过百度搜索到优质的英文内容（这包括了<a target="_blank" rel="noopener" href="https://stackoverflow.com/">stack overflow</a>和<a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/">geekforgeeks</a>这类有相当多优质内容的网站）。</p>
+<p>问题是，我们用的很多软件和代码就是英文互联网原生的（比如在Google和百度搜索“install riscv gnu toolchain”，Google上第一个就是riscv-gnu-toolchain的GitHub仓库连接，百度上第一页则没有这个内容），这些英文内容本来是很重要的官方信息源，却被百度忽略了。</p>
+</li>
+<li><p>如果中文互联网内容比英文的优质的话，上述一点也不是什么大问题，但是现在的情况是，仅讨论技术领域，仅从我使用中文互联网的感觉看，百度似乎宁愿呈现CSDN、博客园等等站点里不明所以、抄袭成风的内容，也不愿意展示官方的或者优质的内容。也就是，你恐怕很难从百度的结果中找到“简短且正确的问题答案”或者“正确且易于理解的知识介绍”。</p>
+<p>举个例子，同样以”matlab plot”作为关键字，<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=matlab+plot&tn=84053098_3_dg&ie=utf-8">百度的结果</a>里CSDN、百度百科、百度文库、百度经验、百家号等等内容占据了第一页，唯独没有Matlab官方文档，而<a target="_blank" rel="noopener" href="https://www.google.com/search?q=plot+matlab&newwindow=1&client=safari&sxsrf=APq-WBtOcIwrERUa9ozq6LZtpeE0k8i-lg:1649518904937&source=hp&ei=OKlRYrKLN7u_3LUPwL-mmAc&iflsig=AHkkrS4AAAAAYlG3SIbYxmtn_gW5ubhs72hgI-9PbpHN&ved=0ahUKEwiyh4LjqIf3AhW7H7cAHcCfCXMQ4dUDCA4&uact=5&oq=plot+matlab&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgoIABCABBCHAhAUMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgjECc6BQgAEJECOgQIABBDOgsILhCABBCxAxCDAToICAAQsQMQgwE6DgguELEDEMcBEKMCENQCOggIABCABBCxAzoECC4QQzoHCAAQsQMQQzoRCC4QgAQQsQMQgwEQxwEQrwE6CwgAEIAEELEDEIMBOg4ILhCABBCxAxDHARCvAToFCC4QgAQ6CggAEIAEEEYQ-QE6BwgAEIAEEApQAFjpCmCiDGgAcAB4AIABxAKIAckMkgEHMC45LjEuMZgBAKABAQ&sclient=gws-wiz">Google的结果</a>的第一条就是官方文档。</p>
+</li>
+<li><p>因为某些原因，有的网站，比如<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5">维基百科</a>的内容是不会被百度放在前排显示的（我甚至觉得百度不会抓取维基百科的内容），也因此百度的结果中损失了相当一大部分优质内容。</p>
+</li>
+<li><p>综合以上内容，我的建议是：远离百度。</p>
+</li>
+</ul>
+<p>当然，如果你不想上Google的话，bing据说也是一个不错的选择。</p>
+<h1 id="我们该怎么搜索？"><a href="#我们该怎么搜索？" class="headerlink" title="我们该怎么搜索？"></a>我们该怎么搜索？</h1><p>这里讨论的不是<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28013848">知乎问题：如何高效使用搜索引擎</a>里提到的一些搜索技巧，而是“哲学”层面的东西。</p>
+<h2 id="我们必须明白，很多时候搜索是没有必要的。"><a href="#我们必须明白，很多时候搜索是没有必要的。" class="headerlink" title="我们必须明白，很多时候搜索是没有必要的。"></a>我们必须明白，很多时候搜索是没有必要的。</h2><h3 id="如果有提示，先把提示弄明白。"><a href="#如果有提示，先把提示弄明白。" class="headerlink" title="如果有提示，先把提示弄明白。"></a>如果有提示，先把提示弄明白。</h3><p>如果你的代码编译失败了，产生了提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: control may reach end of non-void function [-Werror,-Wreturn-type]</span><br></pre></td></tr></table></figure>
+
+<p>你第一件应该做的事是按照提示修改你的代码，而不是搜索这句话。</p>
+<h3 id="如果你知道可能的测试方式的话，先在本地测试明白。"><a href="#如果你知道可能的测试方式的话，先在本地测试明白。" class="headerlink" title="如果你知道可能的测试方式的话，先在本地测试明白。"></a>如果你知道可能的测试方式的话，先在本地测试明白。</h3><p>这是为了保证搜索效率。即使你的尝试可能是无效的，但是这种尝试也可以让你更加清楚自己真的需要查询的东西，也可以让你提前判断什么样的结果是你需要的，因为你要找的东西可能并不是问题的本质。<br>更重要的，万一你一测就测出解决方案了呢？</p>
+<h2 id="把问题提炼成抽象的，而非具体的。"><a href="#把问题提炼成抽象的，而非具体的。" class="headerlink" title="把问题提炼成抽象的，而非具体的。"></a>把问题提炼成抽象的，而非具体的。</h2><p>这点非常重要。搜索引擎并不擅长处理具体的问题，比如说，一个程序员写的<code>int c=a==b;</code>可以被另一个程序员写成<code>int z=x==y;</code>，而搜索引擎是“想”不到两个语句本质一样的，搜索引擎更不懂得这个语句的意义是“将C语言两个变量的相等与否关系赋值给另一个变量”的，但是搜索引擎知道怎么处理”what is the value of &#x3D;&#x3D; in C”这种信息，因为和<code>int c=a==b</code>这种信息相比，这个信息是抽象的。</p>
+<p>举几个例子：</p>
+<ul>
+<li><p>对于初学Java的人来说，可能会想像C++的<code>std::vector&lt;int&gt;G[MAXN]</code>一样创造一个<code>ArrayList&lt;Integer&gt;[MAXN]</code>，但是下面的语句（或者其他类似的语句）却过不了编译：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; []G= <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Integer&gt;()[<span class="number">26</span>];</span><br></pre></td></tr></table></figure>
+
+<p>如果你直接在Google上搜这个语句的内容的话，是搜不到有效信息的，因为它是一个具体的问题，搜索引擎并不擅长怎么处理具体的问题。因此你可以将这个问题抽象化：你这里想做的是创建一个”array of arraylist in Java”，但是你失败了，所以，不妨以”create array of arraylist in Java”在Google搜索，第二个结果是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/8559092/how-can-i-create-an-array-of-arraylists">question in stack overflow</a>，它的第一个回答只用两行就解决了你的问题：</p>
+<blockquote>
+<p>As per <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createArrays">Oracle Documentation</a>:</p>
+<blockquote>
+<p>“You cannot create arrays of parameterized types”</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>同样是对于初学Java的人，可能会写出下面的判断数组相等的程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] x = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;<span class="type">int</span>[] y = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">System.out.println(x.equals(y));</span><br></pre></td></tr></table></figure>
+
+<p>并且不明白为什么会输出<code>false</code>。如果你把上述的代码直接拷贝到Google，你是搜索不到任何结果的。而如果你提炼了问题，在Google搜索”equality of arrays in Java”，<a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/java-util-arrays-equals-java-examples/">第一个来自geeksforgeeks回答</a>就完美解释了你的问题，并且给出了正确的实现方法。</p>
+</li>
+<li><p>如果你的链接器链接错误了，并且输出下面的信息。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/lee/Proj/MoeCompiler/moe/main.cpp:27: undefined reference to `mdb::sysEnable<span class="string">&#x27;</span></span><br><span class="line"><span class="string">clang: error: linker command failed with exit code 1 (use -v to see invocation)</span></span><br><span class="line"><span class="string">make: *** [Makefile:16: compiler] Error 1</span></span><br></pre></td></tr></table></figure>
+
+<p>你可能确实不知道该怎么处理这个信息，并且如果你直接Google这段话的话是没有任何结果的，但是你发现这个语句中最关键的可能是倒数第三行的”undefined reference”，于是你Google了它，看安排搜索结果第一的<a target="_blank" rel="noopener" href="https://www.softwaretestinghelp.com/cpp-errors/">文章</a>后，瞬间明白了可能是<code>mdb::sysEnable</code>声明了却没定义导致的，于是你查了下你的代码，发现果然是这样。</p>
+</li>
+</ul>
+<p>总之，提炼你的信息，然后搜索它，往往会比直接搜索具体的信息来得有效。</p>
+<h2 id="使用一系列关键词，而非一个整句。"><a href="#使用一系列关键词，而非一个整句。" class="headerlink" title="使用一系列关键词，而非一个整句。"></a>使用一系列关键词，而非一个整句。</h2><p>Google搜索”Is it better to use full sentences or key words to do an Internet search?”之后的<a target="_blank" rel="noopener" href="https://schoolsupplyboxes.com/blogs/school-blog/searching-for-results-properly-using-google-for-searches">第一个结果</a>就说了”Instead of long sentences, keep everything nice and short. <strong>Use only the specific keywords or phrase you’re looking for and nothing else</strong>.”。所以，”Keep it simple”，多用关键词而不是整句吧。</p>
+<p>顺便，这个文章里提供了更多的搜索技巧，您也可以参考。</p>
+<h1 id="结语：搜索引擎只是工具，更重要的是你的能力。"><a href="#结语：搜索引擎只是工具，更重要的是你的能力。" class="headerlink" title="结语：搜索引擎只是工具，更重要的是你的能力。"></a>结语：搜索引擎只是工具，更重要的是你的能力。</h1><p>一个不懂计算机科学的人，即使非常懂怎么使用搜索引擎，恐怕也不能代替你做搜索的事。如果你不能理解你做的东西，搜索能力再高超，也只是无米之炊。</p>
+<p>但是，提升搜索能力和提升能力并不冲突，甚至可以说是相辅相成的。所以，从今天起，提升你的搜索能力吧！</p>
+<p>至少，对于技术问题，咱是不是可以不用百度了？</p>
 
     
 
     
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ChrisLee
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://ipchrislee.github.io/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" title="How to use search engine, a programmer perspective" target="_blank">https://ipchrislee.github.io/2022/03/14/How-to-use-search-engine-A-programmer-perspective/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          This article is licensed under a <a href=https://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0 International License</a>. Code sippets may be used under the <a href=https://opensource.org/licenses/MIT>MIT Licence</a>.
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -428,7 +555,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">当我们在搜索时，我们在做什么？</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E5%9C%A8%E6%90%9C%E7%B4%A2%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">当我们在搜索时，我们在做什么？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E5%88%B0%E5%BA%95%E8%A6%81%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">我们到底要什么样的结果？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E2%80%9C%E7%9B%B8%E5%85%B3%E2%80%9D%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">我们想要“相关”的内容。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E2%80%9C%E7%AE%80%E7%9F%AD%E4%B8%94%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%AD%94%E6%A1%88%E2%80%9D%E3%80%82"><span class="toc-number">2.2.</span> <span class="toc-text">我们想要“简短且正确的答案”。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E2%80%9C%E6%AD%A3%E7%A1%AE%E4%B8%94%E6%98%93%E4%BA%8E%E7%90%86%E8%A7%A3%E7%9A%84%E7%9F%A5%E8%AF%86%E4%BB%8B%E7%BB%8D%E2%80%9D%E3%80%82"><span class="toc-number">2.3.</span> <span class="toc-text">我们想要“正确且易于理解的知识介绍”。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E6%83%B3%E8%A6%81%E2%80%9C%E5%AE%98%E6%96%B9%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%9D%E3%80%82"><span class="toc-number">2.4.</span> <span class="toc-text">我们想要“官方的解决方案”。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%AE%98%E6%96%B9%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%9D%E7%9A%84%E5%AE%98%E6%96%B9%E6%9D%A5%E8%87%AA%E5%93%AA%E9%87%8C%EF%BC%9F"><span class="toc-number">2.4.1.</span> <span class="toc-text">“官方的解决方案”的官方来自哪里？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%89%8B%E7%9A%84%E4%BF%A1%E6%81%AF%E6%BA%90%EF%BC%8C%E5%9E%83%E5%9C%BE%EF%BC%81"><span class="toc-number">2.4.2.</span> <span class="toc-text">二手的信息源，垃圾！</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%98%AF%E5%A5%BD%E7%9A%84%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">什么样的搜索引擎是好的？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E8%AF%A5%E6%80%8E%E4%B9%88%E6%90%9C%E7%B4%A2%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">我们该怎么搜索？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E5%BF%85%E9%A1%BB%E6%98%8E%E7%99%BD%EF%BC%8C%E5%BE%88%E5%A4%9A%E6%97%B6%E5%80%99%E6%90%9C%E7%B4%A2%E6%98%AF%E6%B2%A1%E6%9C%89%E5%BF%85%E8%A6%81%E7%9A%84%E3%80%82"><span class="toc-number">4.1.</span> <span class="toc-text">我们必须明白，很多时候搜索是没有必要的。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%9C%89%E6%8F%90%E7%A4%BA%EF%BC%8C%E5%85%88%E6%8A%8A%E6%8F%90%E7%A4%BA%E5%BC%84%E6%98%8E%E7%99%BD%E3%80%82"><span class="toc-number">4.1.1.</span> <span class="toc-text">如果有提示，先把提示弄明白。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%9F%A5%E9%81%93%E5%8F%AF%E8%83%BD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E5%BC%8F%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%85%88%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95%E6%98%8E%E7%99%BD%E3%80%82"><span class="toc-number">4.1.2.</span> <span class="toc-text">如果你知道可能的测试方式的话，先在本地测试明白。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E9%97%AE%E9%A2%98%E6%8F%90%E7%82%BC%E6%88%90%E6%8A%BD%E8%B1%A1%E7%9A%84%EF%BC%8C%E8%80%8C%E9%9D%9E%E5%85%B7%E4%BD%93%E7%9A%84%E3%80%82"><span class="toc-number">4.2.</span> <span class="toc-text">把问题提炼成抽象的，而非具体的。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E7%B3%BB%E5%88%97%E5%85%B3%E9%94%AE%E8%AF%8D%EF%BC%8C%E8%80%8C%E9%9D%9E%E4%B8%80%E4%B8%AA%E6%95%B4%E5%8F%A5%E3%80%82"><span class="toc-number">4.3.</span> <span class="toc-text">使用一系列关键词，而非一个整句。</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD%EF%BC%9A%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%8F%AA%E6%98%AF%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%9B%B4%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF%E4%BD%A0%E7%9A%84%E8%83%BD%E5%8A%9B%E3%80%82"><span class="toc-number">5.</span> <span class="toc-text">结语：搜索引擎只是工具，更重要的是你的能力。</span></a></li></ol>
                     </div>
                 </span>
             </div>
