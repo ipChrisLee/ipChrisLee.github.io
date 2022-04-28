@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ipchrislee.github.io">
-  <title>Archives | ChrisLee&#39;s Blog</title>
+  <title>小谈Cpp复杂项目的内存管理 | ChrisLee&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ChrisLee&#39;s Blog">
-<meta property="og:url" content="https://ipchrislee.github.io/archives/index.html">
+  <meta name="description" content="最近参加了一个比赛，要用C++写一个编译器，总代码量可能可以上几千行乃至几万行。那就我目前的代码来看，用C++写这种规模的项目最大的难题之一就是内存管理，我目前超过一半的写这个项目的时间都花在了内存模型和相关接口的设计上。在写了千行以上代码后，我有了一些经验和总结，特此分享出来，欢迎大家和我讨论。 另外，本文正在更新中，讨论前请确认讨论内容是否基于文章最新内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小谈Cpp复杂项目的内存管理">
+<meta property="og:url" content="https://ipchrislee.github.io/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
+<meta property="og:description" content="最近参加了一个比赛，要用C++写一个编译器，总代码量可能可以上几千行乃至几万行。那就我目前的代码来看，用C++写这种规模的项目最大的难题之一就是内存管理，我目前超过一半的写这个项目的时间都花在了内存模型和相关接口的设计上。在写了千行以上代码后，我有了一些经验和总结，特此分享出来，欢迎大家和我讨论。 另外，本文正在更新中，讨论前请确认讨论内容是否基于文章最新内容。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-28T11:19:08.000Z">
+<meta property="article:modified_time" content="2022-04-28T12:06:24.245Z">
 <meta property="article:author" content="ChrisLee">
-<meta property="article:tag" content="blog, computer architecture">
+<meta property="article:tag" content="in Chinese">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Coding Skill">
 <meta name="twitter:card" content="summary">
   
   
@@ -220,41 +226,92 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="true-小谈Cpp复杂项目的内存管理" class="article article-type-true " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-true">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-04-28T11:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-28</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_blank">小谈Cpp复杂项目的内存管理</a>
   
+    <h1 class="article-title" itemprop="name">
+      小谈Cpp复杂项目的内存管理
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+<a href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
+        <time datetime="2022-04-28T11:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-28</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">282字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近参加了一个比赛，要用C++写一个编译器，总代码量可能可以上几千行乃至几万行。那就我目前的代码来看，用C++写这种规模的项目最大的难题之一就是内存管理，我目前超过一半的写这个项目的时间都花在了内存模型和相关接口的设计上。在写了千行以上代码后，我有了一些经验和总结，特此分享出来，欢迎大家和我讨论。</p>
+<p>另外，本文正在更新中，讨论前请确认讨论内容是否基于文章最新内容。</p>
+<span id="more"></span>
+
+<p>先声明下，我也不擅长写C++，这里只是我写了代码之后的经验总结分享，不是“真理”，也不保证正确。</p>
+<h1 id="可以使用的工具"><a href="#可以使用的工具" class="headerlink" title="可以使用的工具"></a>可以使用的工具</h1><p>欲先攻其事，必先利其器。这里介绍一些后面需要用到的标准库工具。</p>
+<h2 id="搞懂并使用智能指针"><a href="#搞懂并使用智能指针" class="headerlink" title="搞懂并使用智能指针"></a>搞懂并使用智能指针</h2><p>在C++11里引入了智能指针<code>std::unique_ptr</code>、<code>std::shared_ptr</code>和<code>std::weak_ptr</code>。一言蔽之，智能指针的作用就是避免手动析构。</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ChrisLee
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://ipchrislee.github.io/2022/04/28/小谈Cpp复杂项目的内存管理/" title="小谈Cpp复杂项目的内存管理" target="_blank">https://ipchrislee.github.io/2022/04/28/小谈Cpp复杂项目的内存管理/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          This article is licensed under a <a href=https://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0 International License</a>. Code sippets may be used under the <a href=https://opensource.org/licenses/MIT>MIT Licence</a>.
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -274,262 +331,141 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-true">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" class="archive-article-date">
-        <time datetime="2022-03-14T12:56:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How to use search engine, a programmer perspective</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" target="_blank">How to use search engine, a programmer perspective</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Study Skill</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">可以使用的工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9E%E6%87%82%E5%B9%B6%E4%BD%BF%E7%94%A8%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">1.1.</span> <span class="toc-text">搞懂并使用智能指针</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" class="archive-article-date">
-        <time datetime="2022-03-04T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" target="_blank">What happened when casting bool value to unsigned long type</a>
-  
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C plus plus</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" class="archive-article-date">
-        <time datetime="2022-03-04T11:31:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" target="_blank">一场旧梦</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/If-you-want-to-ask-me-questions/" class="archive-article-date">
-        <time datetime="2022-03-04T10:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/If-you-want-to-ask-me-questions/" target="_blank">If you want to ask me questions...</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/04/About/" class="archive-article-date">
-        <time datetime="2022-03-04T10:18:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/04/About/" target="_blank">About</a>
-  
-    </h1>
-  
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
 
 
           </div>
@@ -558,8 +494,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
