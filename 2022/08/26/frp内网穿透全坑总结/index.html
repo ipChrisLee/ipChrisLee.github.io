@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ipchrislee.github.io">
-  <title>ChrisLee&#39;s Blog</title>
+  <title>frp内网穿透全坑总结 | ChrisLee&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="blog, computer architecture">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ChrisLee&#39;s Blog">
-<meta property="og:url" content="https://ipchrislee.github.io/index.html">
+  <meta name="description" content="手头有一个需求是，即使iPad和macOS处于不同的Wi-Fi下，仍然可以通过iPad的终端模拟软件访问操作macOS。虽然有ZeroTier-One这种软件，但是个人试了之后感觉效果不佳（延迟目测有半秒），所以这里推荐和排雷一套我使用服务器+frp的方案（主要是别人的教程）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="frp内网穿透全坑总结">
+<meta property="og:url" content="https://ipchrislee.github.io/2022/08/26/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%85%A8%E5%9D%91%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
+<meta property="og:description" content="手头有一个需求是，即使iPad和macOS处于不同的Wi-Fi下，仍然可以通过iPad的终端模拟软件访问操作macOS。虽然有ZeroTier-One这种软件，但是个人试了之后感觉效果不佳（延迟目测有半秒），所以这里推荐和排雷一套我使用服务器+frp的方案（主要是别人的教程）。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-26T14:45:23.000Z">
+<meta property="article:modified_time" content="2022-08-26T15:08:55.351Z">
 <meta property="article:author" content="ChrisLee">
-<meta property="article:tag" content="blog, computer architecture">
+<meta property="article:tag" content="in Chinese">
 <meta name="twitter:card" content="summary">
   
   
@@ -224,19 +224,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-frp内网穿透全坑总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-frp内网穿透全坑总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/08/26/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%85%A8%E5%9D%91%E6%80%BB%E7%BB%93/" target="_blank">frp内网穿透全坑总结</a>
-  
+    <h1 class="article-title" itemprop="name">
+      frp内网穿透全坑总结
     </h1>
   
 
@@ -250,6 +245,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">605字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -257,13 +273,48 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>手头有一个需求是，即使iPad和macOS处于不同的Wi-Fi下，仍然可以通过iPad的终端模拟软件访问操作macOS。虽然有ZeroTier-One这种软件，但是个人试了之后感觉效果不佳（延迟目测有半秒），所以这里推荐和排雷一套我使用服务器+frp的方案（主要是别人的教程）。</p>
-    
-    <a class="article-more-a" href="/2022/08/26/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%85%A8%E5%9D%91%E6%80%BB%E7%BB%93/#more">more >></a>
-    
-    
+<span id="more"></span>
+
+<p>整体的frp搭建流程可以参考<a target="_blank" rel="noopener" href="https://gabrieltanner.org/blog/port-forwarding-frp/">这篇tutorial</a>。</p>
+<p>有这么几个坑：</p>
+<ol>
+<li><p>你选用的服务器必须要提供公网IP。我第一次用的是华为云，但是华为云的公网IP是需要单独购买的（他们叫弹性动态IP）。后来用的是阿里云，然后我买的那个套餐里包括了公网IP。</p>
+<p>如果不能确定的话，可以直接问各个云服务提供商的客服。区分下弹性公网IP和公网IP：前者是有的企业需要将IP不断解绑、绑定不同服务器才推出的，后者则是每个服务器固定的。</p>
+</li>
+<li><p>由于众所周知的原因，直接在云服务器上<code>wget</code>可能会很慢，甚至很容易失败。鉴于在服务器上做一些操作很危险，你可以现在本地下载完之后通过<code>scp</code>命令传输过去，具体格式是<code>scp -r frp_at_local remote_user@remote_ip:~/</code>，其中<code>frp_at_local</code>是你下载的文件夹；<code>remote_user</code>是服务器的用户名（一般是<code>root</code>），然后<code>remote_ip</code>就是服务器的公网IP。</p>
+</li>
+<li><p>注意要更改下服务器的安全规则，将你用于转发的端口开放。</p>
+</li>
+</ol>
+<p>在按照frp搭建完之后，跑本地的<code>frpc</code>时，可能会报错<code>login to server failed: EOF</code>，你可以按照<a target="_blank" rel="noopener" href="https://blog.phpgao.com/frp_tcp_reset.html">这篇文章</a>提到的方法去修复。</p>
+<p>在上述流程完成后，应该就已经完成内网穿透了。<strong>在<code>frp</code>服务开启的情况下</strong>，你只需要访问服务器上被你设置的用于转发的端口、完成登陆后就可以访问被穿透的内网设备了。</p>
+<p>有时候服务器会重启，这时候就需要考虑怎么在服务器开机时自动开启<code>frps</code>服务了。我参考了<a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15064656/4521111">这篇文章</a>的方法，亲测有效。</p>
+<p>本地的<code>frpc</code>也可以设置自动开启，不过鉴于被穿透设备的操作系统不统一，这里就不提了，大家可以自行搜索。</p>
 
     
 
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          ChrisLee
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://ipchrislee.github.io/2022/08/26/frp内网穿透全坑总结/" title="frp内网穿透全坑总结" target="_blank">https://ipchrislee.github.io/2022/08/26/frp内网穿透全坑总结/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          This article is licensed under a <a href=https://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0 International License</a>. Code sippets may be used under the <a href=https://opensource.org/licenses/MIT>MIT Licence</a>.
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -284,16 +335,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/08/26/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%85%A8%E5%9D%91%E6%80%BB%E7%BB%93/">Show All >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/08/26/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%85%A8%E5%9D%91%E6%80%BB%E7%BB%93/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/15/%E9%99%90%E5%88%B6%E6%80%A7%E4%BD%BF%E7%94%A8%E6%8F%90%E9%86%92/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">苦的安眠药，限制性使用提醒和智能指针</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -308,674 +419,54 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="true-限制性使用提醒" class="article article-type-true  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/06/15/%E9%99%90%E5%88%B6%E6%80%A7%E4%BD%BF%E7%94%A8%E6%8F%90%E9%86%92/" target="_blank">苦的安眠药，限制性使用提醒和智能指针</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/06/15/%E9%99%90%E5%88%B6%E6%80%A7%E4%BD%BF%E7%94%A8%E6%8F%90%E9%86%92/" class="archive-article-date">
-        <time datetime="2022-06-15T13:59:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>今日看丁香园发的一篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ZoejF4AYIgi80ykP_aSTlg">文章</a>，里面提到：</p>
-<blockquote>
-<p>多数安眠药会非常苦。有些苦不是本身产品自带的，也不是我们不能把它添加各种味道，包裹各种东西去遮味，<strong>而是我们希望提醒使用者：你正在做这件事，正在吃一些特殊的东西。</strong></p>
-</blockquote>
-<p>其实在程序设计里也会采取类似的策略，这里分享下自己的想法。</p>
-    
-    <a class="article-more-a" href="/2022/06/15/%E9%99%90%E5%88%B6%E6%80%A7%E4%BD%BF%E7%94%A8%E6%8F%90%E9%86%92/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/06/15/%E9%99%90%E5%88%B6%E6%80%A7%E4%BD%BF%E7%94%A8%E6%8F%90%E9%86%92/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    This article has no menu.
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="true-小谈Cpp复杂项目的内存管理" class="article article-type-true  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_blank">小谈Cpp复杂项目的内存管理</a>
-  
-    </h1>
-  
 
 
-  
-  
-<a href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-04-28T11:19:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-28</time>
-</a>
 
-  
-  
-    
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近参加了一个比赛，要用C++写一个编译器，总代码量可能可以上几千行乃至几万行。那就我目前的代码来看，用C++写这种规模的项目最大的难题之一就是内存管理，我目前超过一半的写这个项目的时间都花在了内存模型和相关接口的设计上。在写了千行以上代码后，我有了一些经验和总结，特此分享出来，欢迎大家和我讨论。</p>
-<p>另外，本文正在更新中，讨论前请确认讨论内容是否基于文章最新内容。</p>
-    
-    <a class="article-more-a" href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/#more">more >></a>
-    
-    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 
-    
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
 
-    
 
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Coding Skill</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-    
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/04/28/%E5%B0%8F%E8%B0%88Cpp%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">Show All >></a>
-    </p>
-    
 
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="true-How-to-use-search-engine-A-programmer-perspective" class="article article-type-true  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" target="_blank">How to use search engine, a programmer perspective</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" class="archive-article-date">
-        <time datetime="2022-03-14T12:56:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>本文主要讨论一些程序员使用搜索引擎时的一些使用技巧，及关于搜索引擎的一些讨论。</p>
-<p>注意，本文的搜索基本上都是关于技术层面问题与知识（特别是计算机方向的问题与知识）的搜索，这里不讨论一些人文、社会、历史之类学科的搜索。</p>
-<p>本文不考虑“有的网站需要通过特殊方式上”、“有的内容需要一定英语能力”之类的问题。</p>
-    
-    <a class="article-more-a" href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Study Skill</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-What-happened-when-converting-bool-value-to-unsigned-long-type" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" target="_blank">What happened when casting bool value to unsigned long type</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" class="archive-article-date">
-        <time datetime="2022-03-04T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first casts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
-    
-    <a class="article-more-a" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C plus plus</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一场旧梦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" target="_blank">一场旧梦</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" class="archive-article-date">
-        <time datetime="2022-03-04T11:31:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>简介：这是我在2021年返校前写的文章，它可能是我大学生涯的无数转折点中的一个。本文可能有点无病呻吟，但是我可以肯定这是我当时的心声，也正因如此，对我而言，它才格外有意义，才使得现在我新建了一个博客也要将它搬过来。</p>
-    
-    <a class="article-more-a" href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随想</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-If-you-want-to-ask-me-questions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/04/If-you-want-to-ask-me-questions/" target="_blank">If you want to ask me questions...</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/04/If-you-want-to-ask-me-questions/" class="archive-article-date">
-        <time datetime="2022-03-04T10:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Please read <a target="_blank" rel="noopener" href="http://www.catb.org/~esr/faqs/smart-questions.html">How To Ask Questions</a> first. (NOTICE: The page writers are not a help desk for your project!)</p>
-<p>对于可以读中文的朋友，也可以看下<a target="_blank" rel="noopener" href="https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways">别像弱者一样提问</a>。</p>
-    
-    <a class="article-more-a" href="/2022/03/04/If-you-want-to-ask-me-questions/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/04/If-you-want-to-ask-me-questions/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-About" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/04/About/" target="_blank">About</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/04/About/" class="archive-article-date">
-        <time datetime="2022-03-04T10:18:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>This is the personal blog of ChrisLee, an undergraduate student of Beijing Jiaotong Universiry.</p>
-    
-    <a class="article-more-a" href="/2022/03/04/About/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">About</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/04/About/">Show All >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -1003,8 +494,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
