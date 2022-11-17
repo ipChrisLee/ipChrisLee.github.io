@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ipchrislee.github.io">
-  <title>What happened when casting bool value to unsigned long type | ChrisLee&#39;s Blog</title>
+  <title>xv6_intro | ChrisLee&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first casts bool to unsigned long, and the">
+  <meta name="description" content="本文是对MIT6.828的推荐和个人完成系列课程后的感受。 本文目前正在施(tian)工(keng)中，讨论请确认基于最新内容。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="What happened when casting bool value to unsigned long type">
-<meta property="og:url" content="https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/index.html">
+<meta property="og:title" content="xv6_intro">
+<meta property="og:url" content="https://ipchrislee.github.io/2022/11/17/xv6-intro/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
-<meta property="og:description" content="I have this question when I learn the source code of operator&lt;&lt;(ostream &amp;,bool). I find that when outputing a bool value using cout, program always first casts bool to unsigned long, and the">
+<meta property="og:description" content="本文是对MIT6.828的推荐和个人完成系列课程后的感受。 本文目前正在施(tian)工(keng)中，讨论请确认基于最新内容。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-04T12:50:32.000Z">
-<meta property="article:modified_time" content="2022-03-05T04:39:39.828Z">
+<meta property="article:published_time" content="2022-11-17T14:20:51.000Z">
+<meta property="article:modified_time" content="2022-11-17T14:36:42.976Z">
 <meta property="article:author" content="ChrisLee">
-<meta property="article:tag" content="in English">
-<meta property="article:tag" content="C plus plus">
+<meta property="article:tag" content="in Chinese">
+<meta property="article:tag" content="Lecture">
+<meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
   
   
@@ -237,22 +238,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-What-happened-when-converting-bool-value-to-unsigned-long-type" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="true-xv6-intro" class="article article-type-true " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      What happened when casting bool value to unsigned long type
+      xv6_intro
     </h1>
   
 
 
   
   
-<a href="/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" class="archive-article-date">
-        <time datetime="2022-03-04T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+<a href="/2022/11/17/xv6-intro/" class="archive-article-date">
+        <time datetime="2022-11-17T14:20:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-17</time>
 </a>
 
   
@@ -265,7 +266,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">245字</span>
+      <span class="post-count">57字</span>
     </span>
   </span>
 
@@ -285,19 +286,15 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>I have this question when I learn the source code of <code>operator&lt;&lt;(ostream &amp;,bool)</code>. I find that when outputing a bool value using <code>cout</code>, program always first casts <code>bool</code> to <code>unsigned long</code>, and then prints such <code>unsigned long</code> value. (<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/457042649">See this article in Chinese</a>) So what happened when doing such conversion? If a <code>bool</code> value <code>b</code> is <code>-1</code>,  what will <code>cout&lt;&lt;b&lt;&lt;endl</code> display?</p>
+    <p>本文是对<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2021/schedule.html">MIT6.828</a>的推荐和个人完成系列课程后的感受。</p>
+<p>本文目前正在施(tian)工(keng)中，讨论请确认基于最新内容。</p>
 <span id="more"></span>
 
-<p>The amswer is: <code>bool</code> will be treated as <code>unsigned</code> value, be zero-extended to <code>unsigned long</code>, and then be output.</p>
-<p>It spends me a lot of time thinking of why, but finally I find this is very obvious…</p>
-<p>First, let’s figure out that: is <code>bool</code> an unsigned value? The answer is: Yes. <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/34612344/is-stdis-unsignedboolvalue-well-defined">The discussion in stackoverflow</a> said this. And the discussion also claims that <code>bool</code> is integral type too.</p>
-<p>Second, how program casts the narrower integral type data to wider integral type? The program will change the size of data first, and change the signedness. So, signed value is casted like being signed-extended, and unsigned value is casted like being zero-extended.</p>
-<p>So, <code>bool</code> value is zero-extended to <code>unsigned long</code>.</p>
-<p>We can see the assembly code to vertify this too:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0000000000000046 &lt;_Z4tranbPm&gt;:</span><br><span class="line"># void tran(bool b,unsigned long * pl)&#123;*pl=v;&#125;</span><br><span class="line">  46:	f3 0f 1e fa          	endbr64 </span><br><span class="line">  4a:	40 0f b6 ff          	movzbl %dil,%edi  # zero extended</span><br><span class="line">  4e:	48 89 3e             	mov    %rdi,(%rsi)</span><br><span class="line">  51:	c3                   	ret    </span><br></pre></td></tr></table></figure>
 
 
-
+<p>使用的资源网址：</p>
+<p>建议：</p>
+<p>一些坑点：</p>
 
     
 
@@ -312,7 +309,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" title="What happened when casting bool value to unsigned long type" target="_blank">https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/</a>
+          <a href="https://ipchrislee.github.io/2022/11/17/xv6-intro/" title="xv6_intro" target="_blank">https://ipchrislee.github.io/2022/11/17/xv6-intro/</a>
         </li>
         
         <li>
@@ -334,11 +331,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in English</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">in Chinese</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C plus plus</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Lecture</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OS</a>
         		</li>
       		
 		</ul>
@@ -394,7 +395,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/03/04/What-happened-when-converting-bool-value-to-unsigned-long-type/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/11/17/xv6-intro/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -409,18 +410,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/03/14/How-to-use-search-engine-A-programmer-perspective/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          How to use search engine, a programmer perspective
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/04/%E4%B8%80%E5%9C%BA%E6%97%A7%E6%A2%A6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一场旧梦</div>
+    <a href="/2022/11/07/%E6%80%8E%E4%B9%88%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%81%9A%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">怎么从零开始做一个项目</div>
       <i class="icon-circle-right"></i>
     </a>
   
