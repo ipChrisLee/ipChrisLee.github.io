@@ -1,8 +1,8 @@
 <p>本文为<a href="https://github.com/ipChrisLee/moe/tree/KousakaReina-1.0.0">moe库初代版本KousakaReina</a>的介绍性文档，主要介绍moe库的来源，以及各个部分的用法和设计逻辑和常用场景。</p>
-<p><img src="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg" alt="KousakaReina"></p>
-<p>Kousaka Reina镇楼（误）。</p>
 <span id="more"></span>
 
+<p><img src="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg" alt="KousakaReina"></p>
+<p>Kousaka Reina镇楼（误）。</p>
 <h1 id="moe库的起源"><a href="#moe库的起源" class="headerlink" title="moe库的起源"></a>moe库的起源</h1><p>本人ipLee在参加<a href="https://compiler.educg.net/#/index?name=2022%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%B5%9B&index=1&img=0">2022全国大学生计算机系统能力大赛编译系统设计赛</a>时第一次写大项目，当时考虑到大项目需要一些比较常用的功能，于是自己实现了一个库。当时编译系统设计赛我的作品名为MoeCompiler，意为“萌编译器”（neta自萌娘百科网址moegirl.org.cn），于是这个来自于MoeCompiler的支持开发的库就命名成了moe。</p>
 <p>值得注意的是，当时<a href="https://github.com/ipChrisLee/MoeCompiler/tree/moe/src/mlib">MoeCompiler使用的moe库</a>有非常明显的<a href="https://www.zhihu.com/question/19993179">过度设计</a>的倾向，最直接的表现是：大多数我亲手写下的代码并不会被我自己用上哪怕一次，而用得上的代码里相当一部分又因为设计缺少思考导致极其难用。在吸取了这个教训之后，我改良了整个库的设计，让它保证：</p>
 <ul>
