@@ -13,20 +13,20 @@
   <meta name="description" content="本文为moe库初代版本KousakaReina的介绍性文档，主要介绍moe库的来源，以及各个部分的用法和设计逻辑和常用场景。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="moe库KousakaReina版本设计介绍">
-<meta property="og:url" content="https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:url" content="https://ipchrislee.github.io/2022/12/02/intro_to_moe_KousakaReina/index.html">
 <meta property="og:site_name" content="ChrisLee&#39;s Blog">
 <meta property="og:description" content="本文为moe库初代版本KousakaReina的介绍性文档，主要介绍moe库的来源，以及各个部分的用法和设计逻辑和常用场景。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png">
-<meta property="og:image" content="https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/set_decorator_demo.png">
-<meta property="og:image" content="https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg">
+<meta property="og:image" content="https://ipchrislee.github.io/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png">
+<meta property="og:image" content="https://ipchrislee.github.io/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/set_decorator_demo.png">
+<meta property="og:image" content="https://ipchrislee.github.io/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg">
 <meta property="article:published_time" content="2022-12-02T05:12:25.000Z">
 <meta property="article:modified_time" content="2022-12-02T08:36:00.317Z">
 <meta property="article:author" content="ChrisLee">
 <meta property="article:tag" content="in Chinese">
 <meta property="article:tag" content="C plus plus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png">
+<meta name="twitter:image" content="https://ipchrislee.github.io/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -247,7 +247,7 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-moe库KousakaReina版本设计介绍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-intro_to_moe_KousakaReina" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -261,7 +261,7 @@
 
   
   
-<a href="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
+<a href="/2022/12/02/intro_to_moe_KousakaReina/" class="archive-article-date">
         <time datetime="2022-12-02T05:12:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-02</time>
 </a>
 
@@ -342,7 +342,7 @@
 </ul>
 <h3 id="为什么要设计这个库-1"><a href="#为什么要设计这个库-1" class="headerlink" title="为什么要设计这个库"></a>为什么要设计这个库</h3><p>在项目设计中，assert和todo可以说是非常常用的函数（它们常用到Rust专门在语言层面支持了它们），但是在C++中，只有比较残废的assert，todo甚至没有。</p>
 <h4 id="关于assert的重要性"><a href="#关于assert的重要性" class="headerlink" title="关于assert的重要性"></a>关于assert的重要性</h4><p>下图部分介绍了bug是fault-&gt;error-&gt;failuer的顺序来的，而assert的作用就是限制这个传播链，让error尽可能马上地暴露出来，进而尽快定位到底在哪错了。</p>
-<p><img src="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png"></p>
+<p><img src="/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/DebugTheory.png"></p>
 <p>这个图来自<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1824y127cX">DiffTest介绍(余子濠, 王华强) [第三期“一生一芯”计划 - P5]</a>的11分钟左右。我个人不是很喜欢“一生一芯”项目里的部分做法，不过这个视频还是很有意思的。</p>
 <h4 id="关于todo的重要性"><a href="#关于todo的重要性" class="headerlink" title="关于todo的重要性"></a>关于todo的重要性</h4><p>写代码时有时候需要面对这种情况：<code>a</code>的取值有<code>0</code>或者<code>1</code>，你想先完成<code>0</code>部分的代码，并且想要代码先通过编译、完成测试。此时你希望的是：在<code>a</code>为<code>1</code>时直接结束代码，那么很明显一个思路是：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (a) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        <span class="comment">/* ... */</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        cerr&lt;&lt;<span class="string">&quot;todo&quot;</span>&lt;&lt;<span class="function">std::endl</span></span><br><span class="line"><span class="function">        <span class="title">exit</span><span class="params">(<span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">break</span>;-</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -393,7 +393,7 @@
 <h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">std::cout &lt;&lt; moe::<span class="built_in">set_decorator</span>(moe::bg_blue, moe::c_red, moe::d_underline)</span><br><span class="line">          &lt;&lt; <span class="string">&quot;Hello! &quot;</span>;</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;How are you?&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">std::cout &lt;&lt; moe::<span class="built_in">set_decorator</span>(moe::bg_cyan, moe::c_black, moe::d_bold)</span><br><span class="line">          &lt;&lt; <span class="string">&quot;Fine, thank you! And you?&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">std::cout &lt;&lt; moe::<span class="built_in">set_decorator</span>(moe::reset);</span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;End of communication&quot;</span> &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
 
 <p>结果：</p>
-<p><img src="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/set_decorator_demo.png" alt="set_decorator_demo"></p>
+<p><img src="/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/set_decorator_demo.png" alt="set_decorator_demo"></p>
 <h2 id="time-pro-hpp"><a href="#time-pro-hpp" class="headerlink" title="time_pro.hpp"></a>time_pro.hpp</h2><h3 id="介绍-8"><a href="#介绍-8" class="headerlink" title="介绍"></a>介绍</h3><p>C++17了，C++标准库里居然还没有简单易用的时间获取函数！</p>
 <p>这里定义的就是这个。</p>
 <h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><p><code>moe::now::day()</code>、<code>moe::now::hour()</code>、<code>moe::now::minute()</code>、<code>moe::now::second()</code>分别输出<code>i32</code>类型的目前的“日”、“时”、“分”和“秒”。</p>
@@ -430,7 +430,7 @@
 <p>我会保证后续更新中<a target="_blank" rel="noopener" href="https://github.com/ipChrisLee/moe/tree/KousakaReina-1.0.0">KousakaReina版本的moe</a>具有前后兼容性。如果是不具有兼容性的更新，我将会发布新的大版本。</p>
 <p>此外，如果想在自己的Git项目中使用KousakaReina版本的moe，可以直接使用<code>git submodule</code>命令，具体请RTFM。</p>
 <p>版本名Kousaka Reina是《吹响吧！上低音号》的角色高坂丽奈，<del>我的老婆</del>。</p>
-<p><img src="/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg" alt="KousakaReina"></p>
+<p><img src="/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/KousakaReina.jpeg" alt="KousakaReina"></p>
 <p>Kousaka Reina绝美图镇楼（误）。</p>
 
     
@@ -446,7 +446,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://ipchrislee.github.io/2022/12/02/moe库KousakaReina版本设计介绍/" title="moe库KousakaReina版本设计介绍" target="_blank">https://ipchrislee.github.io/2022/12/02/moe库KousakaReina版本设计介绍/</a>
+          <a href="https://ipchrislee.github.io/2022/12/02/intro_to_moe_KousakaReina/" title="moe库KousakaReina版本设计介绍" target="_blank">https://ipchrislee.github.io/2022/12/02/intro_to_moe_KousakaReina/</a>
         </li>
         
         <li>
@@ -528,7 +528,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/12/02/moe%E5%BA%93KousakaReina%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E4%BB%8B%E7%BB%8D/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://ipchrislee.github.io/2022/12/02/intro_to_moe_KousakaReina/" alt="微信分享二维码"> -->
     </div>
 </div>
 
